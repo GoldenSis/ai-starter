@@ -1,0 +1,15 @@
+{
+  "name": "plusdefun",
+  "owner": {
+    "name": "Plus de Fun Agency",
+    "url": "https://plusdefun.ch"
+  },
+  "description": "Plugins by Plus de Fun Agency, Geneva.",
+  "plugins": [
+    {
+      "name": "ai-starter",
+      "source": "./",
+      "description": "Self-serve onboarding: connect tools, write context files, find the tasks that eat your week, build your first skill. No call."
+    }
+  ]
+}

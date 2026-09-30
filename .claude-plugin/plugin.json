@@ -1,0 +1,14 @@
+{
+  "name": "ai-starter",
+  "version": "0.1.0",
+  "description": "Self-serve onboarding for a business that wants to use AI smarter. Connects your tools, writes the context files Claude needs to know your company, scans your inbox and calendar for the tasks that eat your week, and builds your first skill with you. No call, nothing leaves your account.",
+  "author": {
+    "name": "Plus de Fun Agency",
+    "email": "arnaud.chretien@plusdefun.ch",
+    "url": "https://plusdefun.ch"
+  },
+  "homepage": "https://github.com/GoldenSis/ai-starter",
+  "repository": "https://github.com/GoldenSis/ai-starter",
+  "license": "MIT",
+  "keywords": ["onboarding", "small business", "automation", "context files", "skills", "cowork"]
+}
