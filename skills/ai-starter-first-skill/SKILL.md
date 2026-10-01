@@ -30,6 +30,8 @@ Write `ai-starter/skills/<task-slug>/SKILL.md` from `templates/skill-template.md
 - the hand-to-a-human rules,
 - what the skill never does: it never sends, never pays, never deletes. It drafts, and the owner sends.
 
+Run the skill check on it (the `ai-starter-skill-check` skill, script `python3 <plugin>/skills/ai-starter-skill-check/scripts/skill_lint.py ai-starter/skills/<task-slug>`) and fix any FAIL before going on.
+
 Copy the skill into the place the owner's client reads skills from (`.claude/skills/` in Claude Code; the skills folder in Cowork or the desktop app) and tell them the path. Ask before copying.
 
 ## 4 · Test on one real example

@@ -37,7 +37,7 @@ Puis, dans le dossier où vous voulez que les fichiers vivent :
 /ai-starter:start
 ```
 
-`/ai-starter:status` montre où vous en êtes. `/ai-starter:start 5` relance une étape. `/ai-starter:start reset` repart de zéro sans effacer ce qui a été construit.
+`/ai-starter:status` montre où vous en êtes. `/ai-starter:check` passe une skill, la vôtre ou une skill reçue, au crible du guide d'Anthropic sur l'écriture des skills, et propose des corrections avant de modifier quoi que ce soit. `/ai-starter:start 5` relance une étape. `/ai-starter:start reset` repart de zéro sans effacer ce qui a été construit.
 
 Dans Claude Cowork ou l'application de bureau, ajoutez le plugin depuis le même dépôt via Réglages, Plugins.
 
