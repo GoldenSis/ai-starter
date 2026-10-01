@@ -37,7 +37,7 @@ Then, in the folder where you want the files to live:
 /ai-starter:start
 ```
 
-`/ai-starter:status` shows where you are. `/ai-starter:start 5` re-runs a step. `/ai-starter:start reset` starts over without deleting what was built.
+`/ai-starter:status` shows where you are. `/ai-starter:check` checks any skill, yours or one you were given, against Anthropic's skill-writing guide and proposes fixes before it changes anything. `/ai-starter:start 5` re-runs a step. `/ai-starter:start reset` starts over without deleting what was built.
 
 In Claude Cowork or the desktop app, add the plugin from the same repository through Settings, Plugins.
 
