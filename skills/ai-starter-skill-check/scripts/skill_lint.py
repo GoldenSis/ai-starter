@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Check Claude skills against the layout rules in Anthropic's skill best-practices page.
+"""Check Agent Skills (SKILL.md folders) against the layout rules in Anthropic's skill best-practices page.
+
+Works for skills aimed at Claude, Codex, Pi, Hermes or any tool that reads SKILL.md.
+Rules that only Claude enforces are reported as NOTE and never fail a skill.
 
 Usage: python3 skill_lint.py <skill folder | folder of skills> [...]
 Standard library only. Prints one line per finding; exits 1 if any FAIL.
@@ -23,11 +26,15 @@ def frontmatter(text):
     end = text.find("\n---", 3)
     if end < 0:
         return None, text
-    meta = {}
+    meta, key = {}, None
     for line in text[3:end].splitlines():
         m = re.match(r"^([A-Za-z_-]+):\s*(.*)$", line)
         if m:
-            meta[m.group(1)] = m.group(2).strip().strip("\"'")
+            key, value = m.group(1), m.group(2).strip()
+            # A YAML block scalar (description: >-) continues on the indented lines below.
+            meta[key] = "" if re.fullmatch(r"[>|][+-]?", value) else value.strip("\"'")
+        elif key and line[:1] in (" ", "\t") and line.strip():
+            meta[key] = (meta[key] + " " + line.strip()).strip()
     return meta, text[end + 4:].lstrip("\n")
 
 
@@ -77,16 +84,16 @@ def check(skill):
     elif not NAME_RE.match(name):
         add("FAIL", f"name '{name}': use lowercase letters, digits and hyphens, max 64")
     elif "anthropic" in name or "claude" in name:
-        add("WARN", f"name '{name}' contains a reserved word ('anthropic' or 'claude'); an upload to the API or claude.ai rejects it")
+        add("NOTE", f"name '{name}' contains 'anthropic' or 'claude': fine for Codex, Pi, Hermes and other tools, but an upload to claude.ai or the Claude API rejects it")
     if not desc:
-        add("FAIL", "frontmatter has no description, so Claude cannot know when to use the skill")
+        add("FAIL", "frontmatter has no description, so the assistant cannot know when to use the skill")
     elif len(desc) > 1024:
         add("FAIL", f"description is {len(desc)} characters, the limit is 1024")
     n = len(body.splitlines())
     if n > BODY_MAX:
         add("FAIL", f"SKILL.md body is {n} lines; keep it under {BODY_MAX} and move detail to reference files")
 
-    # Only files Claude can reach from SKILL.md count: a README or CHANGELOG for humans is not Claude's.
+    # Only files the assistant can reach from SKILL.md count: a README or CHANGELOG for humans is not its.
     direct = links(main, skill) - {main.resolve()}
     reach, frontier = dict.fromkeys(direct, main), list(direct)
     while frontier:
@@ -104,7 +111,7 @@ def check(skill):
             add("WARN", f"{rel} is {len(lines)} lines with no contents list at the top")
         if ref not in direct:
             via = reach[ref].relative_to(root) if reach[ref].is_relative_to(root) else reach[ref]
-            add("WARN", f"{rel} is reached only through {via}; link it from SKILL.md (Claude may read only its first lines)")
+            add("WARN", f"{rel} is reached only through {via}; link it from SKILL.md (the assistant may read only its first lines)")
 
     local = {p.stem for p in skill.rglob("*.py")} | {d.name for d in skill.rglob("*") if d.is_dir()}
     missing = {}
