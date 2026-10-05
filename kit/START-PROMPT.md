@@ -14,9 +14,12 @@ At the end of each step, give me the short status block so I can paste it back n
 
 ## Français
 
+Il suffit de coller ce message dans votre IA (ChatGPT, Gemini, Claude…), avec le fichier `AI-STARTER.fr.md` joint, ou dans les instructions d'un Projet ChatGPT, d'un Gem Gemini ou d'un Space Perplexity qui contient le fichier.
+
 ```
-Pourriez-vous lire le fichier AI Starter joint (AI-STARTER.fr.md) et le suivre comme votre fil conducteur ?
+Pourriez-vous lire le fichier AI Starter joint (AI-STARTER.fr.md) et le suivre pas à pas ?
 Commençons par l'étape 0, puis l'étape 1 quand je vous donne mon accord, une étape à la fois.
+Merci de me parler simplement, sans jargon technique.
 Rien ne doit être envoyé, payé ou supprimé : vous rédigez, et c'est moi qui envoie.
 Si vous ne pouvez pas lire ma messagerie ni mon agenda, merci de me le dire et de passer par le copier-coller décrit dans le fichier.
 À la fin de chaque étape, pourriez-vous me donner le court bloc d'état, que je vous recollerai la prochaine fois ?

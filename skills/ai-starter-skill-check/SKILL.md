@@ -33,4 +33,4 @@ Print one table: finding, file, why it matters, proposed change. FAIL first, the
 
 Ask the owner which changes to make. Make only those, rerun the script, and show the before and after counts. Never touch a skill that came from someone else's plugin; report on it and stop.
 
-Reply in the language the person writes in.
+Reply in the language the person writes in. With a business owner, call a skill a "routine".

@@ -9,7 +9,7 @@ Date: <date> · Sources: <sent mail sample n=..., calendar 4 weeks, folder ...> 
 
 ## Top three
 
-| # | Task | Load | Sameness | Reach | Score | What the skill would do | Stays with a human |
+| # | Task | Load | Sameness | Reach | Score | What the routine would do | Stays with a human |
 |---|---|---:|---:|---:|---:|---|---|
 
 ## Recommendation

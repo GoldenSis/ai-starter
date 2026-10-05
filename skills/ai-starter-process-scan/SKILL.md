@@ -53,7 +53,7 @@ Write `ai-starter/process-audit.md` from `templates/process-audit.md` (relative 
 
 1. Sources read, with counts, and what was declined.
 2. Table of every cluster found (task, per week, minutes, tool, evidence).
-3. Top three with scores and a two-line note each on what the skill would do and what stays with a human.
+3. Top three with scores and a two-line note each on what the routine would do and what stays with a human.
 4. Recommendation: one task, one sentence why, and what the owner will need to supply for step 5 (an example input, the expected output, the rule for edge cases).
 
 Present the top three as a table in chat and ask which to build. Do not start building here.

@@ -1,10 +1,10 @@
-# What we built · <date>
+# Summary: what we built · <date>
 
 **Connected:** <tools>
 **Context files:** `ai-starter/context/company.md`, `brand-voice.md`, `preferences.md`, `ai-starter/AGENTS.md` (+ one-line `CLAUDE.md`)
 **Audit:** `ai-starter/process-audit.md` (<n> recurring tasks found)
 
-## Skill 1 · <name>
+## Routine 1 · <name>
 - Does: <one line>
 - Run it: <how, in the owner's client>
 - Tested on: <the example, date, verdict>

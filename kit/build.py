@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Build the single-file kits (kit/AI-STARTER.md, kit/AI-STARTER.fr.md) from skills/.
+"""Build the single-file kits (kit/AI-STARTER.md, kit/AI-STARTER.fr.md).
 
-The skills are the only source of truth. This script strips their frontmatter,
-puts them in order behind a short header for chat assistants, and appends the
-templates. Run it after any change under skills/ and commit the output.
+The English kit comes from skills/, the source of truth for agents. The French
+kit comes from kit/fr/: a native French copy of each SKILL.md body
+(kit/fr/<skill>.md) and of each template (kit/fr/templates/<file>). When you
+change a skill or a template, change its French copy in the same commit.
+The script strips frontmatter, puts the bodies in order behind a short header
+for chat assistants, and appends the templates. Commit the output.
 
     python3 kit/build.py          write the kits
     python3 kit/build.py --check  exit 1 if a kit is out of date
@@ -14,6 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
+FR = ROOT / "kit" / "fr"
 ORDER = [
     "ai-starter-onboarding",
     "ai-starter-process-scan",
@@ -42,25 +46,25 @@ Reply in the language the owner writes in.
 """,
     "fr": """# AI Starter · tout le parcours en un seul fichier
 
-Généré depuis le dossier `skills/` de https://github.com/GoldenSis/ai-starter par `kit/build.py`. À ne pas modifier à la main.
+Généré par `kit/build.py` à partir du dossier `kit/fr/` de https://github.com/GoldenSis/ai-starter. À ne pas modifier à la main.
 
-Le parcours ci-dessous est rédigé en anglais, la langue dans laquelle il est maintenu. L'assistant le lit sans difficulté et vous répondra en français si vous lui écrivez en français ; les fichiers de contexte seront eux aussi rédigés en français.
+## Pour l'IA qui lit ce fichier
 
-## Pour l'assistant qui lit ce fichier
+Vous conduisez le parcours AI Starter avec la personne qui dirige une entreprise, dans une conversation (ChatGPT, Gemini, Perplexity, DeepSeek, Mistral Le Chat, claude.ai ou une autre). Elle écrit en français : répondez en français, avec un registre courtois qui préfère le conditionnel (« vous pourriez », « il serait utile ») aux impératifs secs. Le parcours ci-dessous a été écrit pour une IA capable d'écrire des fichiers ; adaptez-le ainsi :
 
-You are running AI Starter with a business owner, in a chat (ChatGPT, Gemini, Perplexity, DeepSeek, Mistral Le Chat, claude.ai or any other). The owner writes in French: reply in French, in a courteous register that prefers the conditional ("vous pourriez", "il serait utile") to bare imperatives. Adapt the playbook this way:
-
-- **Start, resume, status.** "Lance AI Starter", "AI Starter étape 3" and "où en est AI Starter" mean start, step 3 and status: follow *Start, resume, status* in the onboarding section.
-- **Files.** When a step says to write a file, show it in one code block with its file name on the line above, and ask the owner to save it (in a ChatGPT project, a Gemini Gem or a Perplexity Space, they can add it to the files there).
-- **State.** You may not see earlier chats. At the end of each step, print a three-line status block (steps done, chosen task, date) and ask the owner to paste it back when they return.
-- **Skills.** When a step says "load the X skill", go to the section of that name below.
-- **Scripts.** You probably cannot run the Python check. Make its checks by reading.
-- **Mail and calendar.** If you cannot reach them, use the paste route in the process scan section.
-- **Paths** such as `templates/company.md` refer to the templates at the end of this file.
+- **Démarrer, reprendre, faire le point.** « Lance AI Starter », « AI Starter étape 3 » et « où en est AI Starter » veulent dire démarrer, faire l'étape 3 et faire le point : suivez *Démarrer, reprendre, faire le point* dans la première section.
+- **Fichiers.** Quand une étape demande d'écrire un fichier, montrez-le dans un seul bloc de code, avec son nom sur la ligne du dessus, et proposez à la personne de l'enregistrer (dans un Projet ChatGPT, un Gem Gemini ou un Space Perplexity, elle pourrait l'ajouter aux fichiers).
+- **Où l'on en est.** Vous ne voyez peut-être pas les conversations précédentes. À la fin de chaque étape, affichez un bloc de trois lignes (étapes faites, tâche choisie, date) et proposez à la personne de vous le recoller à son retour.
+- **Sections.** Quand une étape renvoie à une section, par exemple `ai-starter-process-scan`, passez à la section qui porte ce nom plus bas.
+- **Script.** Vous ne pouvez probablement pas lancer le contrôle en Python. Faites ses vérifications en lisant.
+- **Mails et agenda.** Si vous ne pouvez pas les atteindre, passez par le copier-coller décrit dans la section `ai-starter-process-scan`.
+- **Chemins.** Les chemins comme `templates/company.md` renvoient aux modèles en fin de fichier.
+- **Mots simples.** Avec la personne, dites « routine », « votre IA » et « récapitulatif », jamais « skill », « compétence », « plugin », « agent », « connecteur » ni « registre ».
 """,
 }
 
-TEMPLATES_TITLE = {"en": "Templates", "fr": "Modèles (templates)"}
+TEMPLATES_TITLE = {"en": "Templates", "fr": "Modèles"}
+SECTION_TAG = {"en": "skill", "fr": "section"}
 
 
 def body(skill_md):
@@ -76,12 +80,15 @@ def body(skill_md):
 def build(lang):
     parts = [HEADER[lang].strip()]
     for name in ORDER:
+        src = SKILLS / name / "SKILL.md" if lang == "en" else FR / f"{name}.md"
         # The skill's own title becomes the section heading, tagged with the skill name.
-        parts.append(re.sub(r"^## (.+)$", rf"## \1 · skill `{name}`", body(SKILLS / name / "SKILL.md"), count=1, flags=re.M))
+        parts.append(re.sub(r"^## (.+)$", rf"## \1 · {SECTION_TAG[lang]} `{name}`", body(src), count=1, flags=re.M))
     tpl = [f"## {TEMPLATES_TITLE[lang]}"]
     for name in ORDER:
         for f in sorted((SKILLS / name / "templates").glob("*.md")):
-            content = f.read_text(encoding="utf-8").strip()
+            # Every English template needs its French copy; a missing one stops the build.
+            src = f if lang == "en" else FR / "templates" / f.name
+            content = src.read_text(encoding="utf-8").strip()
             tpl.append(f"### templates/{f.name}\n\n````markdown\n{content}\n````")
     parts.append("\n\n".join(tpl))
     return "\n\n".join(parts) + "\n"
