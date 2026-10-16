@@ -184,6 +184,18 @@ Never automate a task before it has been written down and trimmed. An automated 
 
 With the owner, call what you build a "routine", never a skill, plugin or agent. `SKILL.md` stays the file name.
 
+### 0 · Pick the route: output-first or steps-first
+
+Ask one question first: does this task end in a finished document the owner already has several of (a proposal, a newsletter, a monthly report, a quote)? If yes, take the output-first route below and skip the step-by-step walk-through; showing Claude good finished work teaches it more than a description of the process. If the task is a flow of actions with no single finished document (sorting an inbox, chasing a payment), take the steps-first route from section 1.
+
+#### Output-first route
+
+1. Gather examples. Ask for the three to six best past outputs and, when the owner has numbers (replies, signed deals, open or click rates), the same count of the worst ones. With connectors, offer to pull them yourself and ask the owner to confirm the ranking. Save them under `ai-starter/skills/<task-slug>/examples/`.
+2. Find what separates good from bad: structure, opening, length, tone, call to action, what is left out. Give one line of reason per pattern and tag each one **seen** (visible in the examples), **inferred** (a likely cause), or **unknown**. Never present an inferred reason as a fact. Write this to `audit.md`.
+3. Show the patterns to the owner and wait. The owner confirms, cuts or corrects them; record the final list. Then go to section 3 and write the skill from the confirmed patterns, using the best example as the output model. Test it in section 4 against one input whose real output the owner already has, so the comparison is fair.
+
+The hand-to-a-human rules of section 2 still apply on this route.
+
 ### 1 · Audit: how it is done today
 
 Ask the owner to walk through the task in writing, step by step, as they did it the last time. Numbered steps, one action each. Ask for one real example of the input (the email, the request, the file) and the output they produced for it. If they have the connectors, offer to pull the last real example yourself and ask them to confirm it is typical.
