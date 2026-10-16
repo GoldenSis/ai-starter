@@ -183,6 +183,18 @@ N'automatisez jamais une tâche avant qu'elle ait été écrite et allégée. Un
 
 Avec la personne, appelez ce que vous construisez une « routine », jamais une skill, une compétence, un plugin ou un agent. `SKILL.md` reste le nom du fichier.
 
+### 0 · Choisir le chemin : partir du résultat ou partir des étapes
+
+Posez d'abord une question : la tâche aboutit-elle à un document fini dont la personne possède déjà plusieurs exemplaires (une proposition, une lettre d'information, un rapport mensuel, un devis) ? Si oui, prenez le chemin « partir du résultat » ci-dessous et laissez de côté la description étape par étape : un bon travail fini, montré à l'IA, lui en apprend davantage qu'une description du procédé. Si la tâche est une suite d'actions sans document final unique (trier une boîte mail, relancer un paiement), suivez le chemin par étapes de la section 1.
+
+#### Partir du résultat
+
+1. Réunir les exemples. Demandez les trois à six meilleurs résultats passés et, quand la personne dispose de chiffres (réponses, contrats signés, taux d'ouverture ou de clic), autant des moins bons. Si les liens le permettent, proposez d'aller les chercher vous-même et demandez-lui de confirmer le classement. Rangez-les dans `ai-starter/skills/<tache>/exemples/`.
+2. Trouver ce qui sépare les bons des moins bons : la structure, l'ouverture, la longueur, le ton, l'appel à l'action, ce qui est laissé de côté. Donnez une ligne de raison par constat et marquez chacun **vu** (visible dans les exemples), **déduit** (une cause probable) ou **inconnu**. Ne présentez jamais une raison déduite comme un fait. Écrivez le tout dans `audit.md`.
+3. Montrez ces constats à la personne et attendez sa réponse. Elle pourrait les confirmer, en retirer ou les corriger ; notez la liste finale. Passez ensuite à la section 3 et écrivez la routine à partir des constats confirmés, avec le meilleur exemple comme modèle de résultat. Faites l'essai de la section 4 sur une demande dont la personne a déjà le vrai résultat, pour que la comparaison soit juste.
+
+Les règles de passage à un humain de la section 2 s'appliquent aussi sur ce chemin.
+
 ### 1 · Observer : comment c'est fait aujourd'hui
 
 Demandez à la personne de décrire la tâche par écrit, étape par étape, comme elle l'a faite la dernière fois. Des étapes numérotées, une action chacune. Demandez un exemple réel de ce qui arrive (le mail, la demande, le fichier) et du résultat qu'elle a produit. Si les liens le permettent, proposez d'aller chercher vous-même le dernier exemple réel, et demandez-lui de confirmer qu'il est représentatif.
