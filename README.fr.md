@@ -29,6 +29,10 @@ Vous pouvez vous arrêter à tout moment et reprendre plus tard.
 - Elle ne lit rien sans votre accord. Vos données restent dans votre propre compte ; Plus de Fun n'en voit aucune.
 - Les mots de passe et coordonnées bancaires sont écartés s'ils apparaissent.
 
+## Juste un quart d'heure ?
+
+Collez le message de [`kit/BRAIN-PROMPT.md`](kit/BRAIN-PROMPT.md) dans votre IA, sans fichier à joindre. Elle vous pose une dizaine de questions et rédige `entreprise.md` : votre activité, votre façon d'écrire et vos règles. Joignez ce fichier à vos prochaines conversations ; votre IA connaîtra déjà votre entreprise.
+
 ## Vous préférez vous lancer seul ?
 
 1. Il suffit de télécharger [`kit/AI-STARTER.fr.md`](kit/AI-STARTER.fr.md) (la flèche de téléchargement, en haut à droite de la page du fichier).
