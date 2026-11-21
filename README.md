@@ -29,6 +29,10 @@ You can stop at any point and pick up later.
 - It reads nothing without your yes. Your data stays in your own AI account; Plus de Fun sees none of it.
 - Passwords and bank details are dropped if they show up.
 
+## Only fifteen minutes?
+
+Paste the message from [`kit/BRAIN-PROMPT.md`](kit/BRAIN-PROMPT.md) into your AI, with no file to attach. It asks about ten questions and writes `business.md`: your business, the way you write and your rules. Attach that file to your next chats and your AI already knows your business.
+
 ## Prefer to do it yourself?
 
 1. Download [`kit/AI-STARTER.md`](kit/AI-STARTER.md) (the download arrow at the top right of the file page).
